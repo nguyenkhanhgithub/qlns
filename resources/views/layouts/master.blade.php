@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{config('app.locale')}}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,7 +25,7 @@
     <link href="public/back-end/plugins/bower_components/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- animation CSS -->
     <link href="public/back-end/css/animate.css" rel="stylesheet">
-    
+
     <!-- Page plugins css -->
     <link href="public/back-end/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
     <!-- Color picker plugins css -->
@@ -36,10 +36,20 @@
     <link href="public/back-end/plugins/bower_components/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
     <link href="public/back-end/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+    <!-- summernotes CSS -->
+    <link href="public/back-end/plugins/bower_components/summernote/dist/summernote.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="public/back-end/css/style.css" rel="stylesheet">
     <!-- color CSS -->
-    <link href="public/back-end/css/colors/megna-dark.css" id="theme" rel="stylesheet">
+    <link href="public/back-end/css/colors/megna-dark.css" id="theme" rel="stylesheet">  <!-- vue js -->
+
+
+        <link href="public/back-end/plugins/bower_components/custom-select/custom-select.css" rel="stylesheet" type="text/css" />
+        <link href="public/back-end/plugins/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" />
+        <link href="public/back-end/plugins/bower_components/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+        <link href="public/back-end/plugins/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
+        <link href="public/back-end/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+        <link href="public/back-end/plugins/bower_components/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -91,13 +101,14 @@
     <!-- ============================================================== -->
     <!-- Wrapper -->
     <!-- ============================================================== -->
+    <example>
     <div id="wrapper">
         @include('layouts.header')
         <div id="page-wrapper">
             <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Dashboard 1</h4> </div>
+                    <h4 class="page-title">Dashbroad</h4> </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
                     <a href="" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Buy Admin Now</a>
@@ -108,7 +119,7 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            @yield('content')  
+            @yield('content')
             </div>
             <!-- /.container-fluid -->
         @include('layouts.footer')
@@ -117,6 +128,7 @@
         <!-- End Page Content -->
         <!-- ============================================================== -->
     </div>
+    </example>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -124,6 +136,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="public/back-end/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="public/back-end/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Menu Plugin JavaScript -->
@@ -141,7 +154,7 @@
     <script src='public/back-end/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
     <script src="public/back-end/plugins/bower_components/calendar/dist/jquery.fullcalendar.js"></script>
     <script src="public/back-end/plugins/bower_components/moment/min/locales.js"></script>
-    <script src="public/back-end/plugins/bower_components/calendar/dist/cal-init.js"></script> 
+    <script src="public/back-end/plugins/bower_components/calendar/dist/cal-init.js"></script>
     <!-- Clock Plugin JavaScript -->
     <script src="public/back-end/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.js"></script>
     <!-- Color Picker Plugin JavaScript -->
@@ -166,10 +179,23 @@
     <script src="public/back-end/plugins/bower_components/raphael/raphael-min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="public/back-end/js/custom.min.js"></script>
+    <script src="public/back-end/plugins/bower_components/summernote/dist/summernote.min.js"></script>
     {{-- <script src="public/back-end/js/dashboard1.js"></script> --}}
     <!-- Custom tab JavaScript -->
     <script src="public/back-end/js/cbpFWTabs.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="public/back-end/plugins/bower_components/switchery/dist/switchery.min.js"></script>
+    <script src="public/back-end/plugins/bower_components/custom-select/custom-select.min.js" type="text/javascript"></script>
+    <script src="public/back-end/plugins/bower_components/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="public/back-end/plugins/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="public/back-end/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="public/back-end/plugins/bower_components/multiselect/js/jquery.multi-select.js"></script>
+    <style media="screen">
+      .select2-container .select2-choice .select2-arrow{
+        border: 0px;
+        background: none;
+      }
+    </style>
     <script type="text/javascript">
     (function() {
         [].slice.call(document.querySelectorAll('.sttabs')).forEach(function(el) {
@@ -305,22 +331,22 @@
 
 </html>
 <script>
-    function bodauTiengViet(str) {  
-        str= str.toLowerCase();  
-        str= str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a");  
-        str= str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e");  
-        str= str.replace(/ì|í|ị|ỉ|ĩ/g,"i");  
-        str= str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o");  
-        str= str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u");  
-        str= str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y");  
-        str= str.replace(/đ/g,"d");  
-        return str;  
+    function bodauTiengViet(str) {
+        str= str.toLowerCase();
+        str= str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a");
+        str= str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e");
+        str= str.replace(/ì|í|ị|ỉ|ĩ/g,"i");
+        str= str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o");
+        str= str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u");
+        str= str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y");
+        str= str.replace(/đ/g,"d");
+        return str;
     }
     $(".myadmin-alert .closed").click(function(event) {
         $(this).parents(".myadmin-alert").fadeToggle(350);
         return false;
     });
-    
+    $(".select2").select2();
     function toast($text,$bg,$icon){
         $.toast({
             heading: 'Thông báo',
@@ -333,4 +359,22 @@
         });
     }
 </script>
+<script>
+    jQuery(document).ready(function() {
+        $('.summernote').summernote({
+            height: 350, // set editor height
+            minHeight: null, // set minimum height of editor
+            maxHeight: null, // set maximum height of editor
+            focus: false // set focus to editable area after initializing summernote
+        });
+        $('.inline-editor').summernote({
+            airMode: true
+        });
+    });
+    window.edit = function() {
+        $(".click2edit").summernote()
+    }, window.save = function() {
+        $(".click2edit").destroy()
+    }
+    </script>
 @yield('script')

@@ -27,7 +27,7 @@
                     </li>
                     <li>
                         <div class="message-center">
-                           
+
                         </div>
                     </li>
                     <li>
@@ -233,7 +233,7 @@
                             <li> <a href="manage/diem/index"><i class="fa-fw">T</i><span class="hide-menu">Điểm</span></a> </li>
                         </ul>
                     </li>
-                    
+
                     <li> <a href="javascript:void(0)" class="waves-effect"><i class="icon-bulb fa-fw"></i> <span class="hide-menu">Kết quả<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-third-level">
                             <li> <a href="manage/ketqua/index"><i class="fa-fw">F</i><span class="hide-menu">Kết quả</span></a> </li>
@@ -261,13 +261,13 @@
                 <ul class="nav nav-second-level one-li">
                     <li><a href="javascript:void(0)" class="waves-effect"><i class="ti-email fa-fw"></i> <span class="hide-menu">Kết quả học kỳ</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
-                             <li> <a href="manage/hklh/index"><i class="fa-fw">B</i> <span class="hide-menu">KQ học kỳ theo lớp học</span></a></li> 
+                             <li> <a href="manage/hklh/index"><i class="fa-fw">B</i> <span class="hide-menu">KQ học kỳ theo lớp học</span></a></li>
                             <li> <a href="manage/hkmh/index"><i class="ti-alert fa-fw"></i> <span class="hide-menu">KQ học kỳ theo môn học</span></a></li>
                         </ul>
                     </li>
                     <li><a href="javascript:void(0)" class="waves-effect"><i class="ti-email fa-fw"></i> <span class="hide-menu">Kết quả năm học</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
-                             <li> <a href="manage/cnlh/index"><i class="fa-fw">B</i> <span class="hide-menu">KQ năm học theo lớp học</span></a></li> 
+                             <li> <a href="manage/cnlh/index"><i class="fa-fw">B</i> <span class="hide-menu">KQ năm học theo lớp học</span></a></li>
                             <li> <a href="manage/cnmh/index"><i class="ti-alert fa-fw"></i> <span class="hide-menu">KQ năm học theo môn học</span></a></li>
                         </ul>
                     </li>
@@ -290,7 +290,7 @@
                     <li><a href="table-layouts.html"><i class="fa-fw">L</i><span class="hide-menu">Gửi tin nhắn</span></a></li><ul class="nav nav-second-level one-li">
                     <li><a href="javascript:void(0)" class="waves-effect"><i class="ti-email fa-fw"></i> <span class="hide-menu">Biên soạn</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
-                            <li> <a href="manage/tinnhan/quantri"><i class="fa-fw">B</i> <span class="hide-menu">Tới quản trị viên</span></a></li> 
+                            <li> <a href="manage/tinnhan/quantri"><i class="fa-fw">B</i> <span class="hide-menu">Tới quản trị viên</span></a></li>
                             <li> <a href="manage/tinnhan/canbo"><i class="ti-alert fa-fw"></i> <span class="hide-menu">Tới Cán bộ</span></a></li>
                             <li> <a href="manage/tinnhan/hocsinh"><i class="ti-alert fa-fw"></i> <span class="hide-menu">Tới Học sinh</span></a></li>
                         </ul>
@@ -298,18 +298,21 @@
                 </ul>
                 </ul>
             </li>
-            
+
             <li> <a href="javascript:void(0)" class="waves-effect"><i class="mdi mdi-email fa-fw"></i> <span class="hide-menu">Quản lý thư viện<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">9</span></span></a>
                 <ul class="nav nav-second-level">
-                    {{--  <li><a href="basic-table.html"><i class="fa-fw">B</i><span class="hide-menu">Danh mục sách</span></a></li>
-                    <li><a href="table-layouts.html"><i class="fa-fw">L</i><span class="hide-menu">Gửi tin nhắn</span></a></li><ul class="nav nav-second-level one-li">  --}}
                     <li><a href="javascript:void(0)" class="waves-effect"><i class="ti-email fa-fw"></i> <span class="hide-menu">Danh mục</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
-                            <li> <a href="manage/sach/index"><i class="fa-fw">B</i> <span class="hide-menu">Đầu sách</span></a></li> 
-                            <li> <a href="manage/muonsach/index"><i class="ti-alert fa-fw"></i> <span class="hide-menu">Mượn sách</span></a></li>
-                            <li> <a href="manage/trasach/index"><i class="ti-alert fa-fw"></i> <span class="hide-menu">Trả sách</span></a></li>
+                            <li> <a href="manage/sach/index"><i class="fa-fw">B</i> <span class="hide-menu">Đầu sách</span></a></li>
                         </ul>
                     </li>
+                    <li> <a href="manage/muonsach/index"><i class="ti-alert fa-fw"></i> <span class="hide-menu">Mượn, trả sách</span></a></li>
+                </ul>
+            </li>
+
+            <li> <a href="javascript:void(0)" class="waves-effect"><i class="mdi mdi-email fa-fw"></i> <span class="hide-menu">Quản lý thi cử<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">9</span></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="manage/thicu/index" class="waves-effect"><i class="ti-email fa-fw"></i> <span class="hide-menu">Đề thi</a></li>
                 </ul>
                 </ul>
             </li>

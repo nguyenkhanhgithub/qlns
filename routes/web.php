@@ -40,7 +40,7 @@ Route::group(['prefix' => 'manage','middleware' => 'middleLogin'],function(){
 
     	Route::get('getDelete/{id}','GroupClassController@getDelete');
     });
-    
+
     Route::group(['prefix' => 'mon'],function(){
         Route::get('index','SubjectController@index');
         Route::get('getUpdate/{id}','SubjectController@getUpdate');
@@ -202,9 +202,25 @@ Route::group(['prefix' => 'manage','middleware' => 'middleLogin'],function(){
     Route::group(['prefix' => 'sach'],function(){
         Route::get('index','BookController@index');
         Route::get('getSearch','BookController@getSearch');
-        Route::post('postInsert','BookController@postInsert'); 
-        Route::post('postUpdate','BookController@postUpdate'); 
+        Route::post('postInsert','BookController@postInsert');
+        Route::post('postUpdate','BookController@postUpdate');
+				Route::post('postChuong','BookController@postChuong');
     });
+
+    Route::group(['prefix' => 'muonsach'],function(){
+        Route::get('index','BorBookcontroller@index');
+        Route::post('postInsert','BorBookController@postInsert');
+        Route::post('updateTT','BorBookController@updateTT');
+				Route::get('getSearch','BorBookController@getSearch');
+    });
+
+		Route::group(['prefix' => 'doctruyen'],function(){
+			Route::get('index','ReadBookController@index');
+		});
+
+		Route::group(['prefix' => 'thicu'],function(){
+				Route::get('index','ExamController@index');
+		});
 
     Route::group(['prefix' => 'ajax'],function(){
         Route::get('lop_namhoc/{id}','AjaxController@lop_namhoc');
@@ -236,7 +252,9 @@ Route::group(['prefix' => 'manage','middleware' => 'middleLogin'],function(){
         Route::get('getBook','AjaxController@getBook');
         Route::get('sach_id','AjaxController@sach_id');
         Route::get('sach_delete','AjaxController@sach_delete');
+        Route::get('sach_theloai','AjaxController@sach_theloai');
+        Route::get('hocsinh_l','AjaxController@hocsinh_l');
+        Route::get('muon_delete','AjaxController@muon_delete');
+				Route::post('postChuong','AjaxController@postChuong');
     });
-
-
 });

@@ -79,7 +79,6 @@
 @endsection
 @section('script')
 <script>
-CKEDITOR.replace('txtNoidung');
 $(document).on('change','select[name="txtNguoigui"]',function(){
 	$.ajax({
 		url: 'manage/ajax/getMail/'+$(this).val(),
@@ -115,7 +114,7 @@ $(document).on('change','#checkAll',function(){
 $(document).on('click','#guitin',function(){
 	var listem = [];
 	var i = 0;
-	
+
 	$.toast({
 		heading: 'Thông báo',
 		text: 'Gửi mail thành công.',
@@ -124,7 +123,7 @@ $(document).on('click','#guitin',function(){
 		icon: 'info',
 		hideAfter: 4000,
 		stack: 6
-	});    
+	});
 	var noidung = CKEDITOR.instances.txtNoidung.getData();
 	$('input[class="checkmail"]:checked').each(function(i,item){
 		listem.push($(item).val());

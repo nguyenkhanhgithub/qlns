@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Response;
+use View;
 use App\Sach;
 use Session;
+use App\Doctruyen;
 
 class BookController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
         $loaisach = DB::table('LOAISACH')->get();
         $theloai = DB::table('THELOAISACH')->get();
@@ -23,7 +26,9 @@ class BookController extends Controller
             ->select('SACH.*','LOAISACH.TenLoaiSach','NHAXUATBAN.TenNXB','THELOAISACH.TenTheLoai','SACH.XuatBan')
             ->orderBy('SACH.id','ASC')
             ->paginate(20);
-
+        if ($request->ajax()) {
+            return Response::json(View::make('Thuvien.sach.ajaxSachPaginate', array('sach' => $sach))->render());
+        }
         return view('Thuvien.Sach.Sach',['sach'=>$sach,'loaisach' => $loaisach,'theloai' => $theloai,'nxb' => $nxb]);
     }
 
@@ -43,13 +48,22 @@ class BookController extends Controller
             ->leftJoin('NHAXUATBAN','NHAXUATBAN.id','=','SACH.idNXB')
             ->leftJoin('LOAISACH','LOAISACH.id','=','SACH.idLoaiSach')
             ->leftJoin('THELOAISACH','THELOAISACH.id','=','SACH.idTheLoaiSach')
-            ->where('SACH.idLoaiSach','like',$keyword['loaisach'])
-            ->where('SACH.idTheLoaiSach','=',$keyword['theloai'])
+            ->where(function($query) use ($keyword)  {
+                if(isset($keyword['loaisach'])) {
+                    $query->where('SACH.idLoaiSach', $keyword['loaisach']);
+                }
+                if(isset($keyword['theloai'])){
+                    $query->where('SACH.idTheLoaiSach', $keyword['theloai']);
+                }
+             })
             ->select('SACH.*','LOAISACH.TenLoaiSach','NHAXUATBAN.TenNXB','THELOAISACH.TenTheLoai','SACH.XuatBan')
             ->orderBy('SACH.id','ASC')
             ->paginate(20);
 
-        return view('Thuvien.Sach.Sach',['sach'=>$sach,'loaisach' => $loaisach,'theloai' => $theloai,'keyword' => $keyword,'nxb' => $nxb]);
+        if ($request->ajax()) {
+            return Response::json(View::make('Thuvien.sach.ajaxSachPaginate', array('sach' => $sach))->render());
+        }
+        return view('Thuvien.Sach.Sach',['sach'=>$sach,'loaisach' => $loaisach,'theloai' => $theloai,'nxb' => $nxb,'keyword' => $keyword]);
     }
 
     public function postInsert(Request $request)
@@ -72,7 +86,7 @@ class BookController extends Controller
                 'theloai.required'  => 'Chọn thể loại.',
                 'Soluong.required'  => 'Chọn số lượng.',
                 'nxb.required'      => 'Chọn nhà xuất bản.',
-                'XuatBan.required'  => 'Nhập năm xuất bản.'    
+                'XuatBan.required'  => 'Nhập năm xuất bản.'
             ]
         );
 
@@ -124,7 +138,7 @@ class BookController extends Controller
                 'theloai.required'  => 'Chọn thể loại.',
                 'Soluong.required'  => 'Chọn số lượng.',
                 'nxb.required'      => 'Chọn nhà xuất bản.',
-                'XuatBan.required'  => 'Nhập năm xuất bản.'    
+                'XuatBan.required'  => 'Nhập năm xuất bản.'
             ]
         );
 
@@ -154,4 +168,6 @@ class BookController extends Controller
         $sach->save();
         return redirect('manage/sach/index')->with('notification','Cập nhật thành công!');
     }
+
+
 }

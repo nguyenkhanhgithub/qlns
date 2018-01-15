@@ -22,6 +22,8 @@ use App\Tiethoc;
 use App\Gvmon;
 use App\KQHockyMonhoc;
 use App\Sach;
+use App\Muonsach;
+use App\Doctruyen;
 
 class AjaxController extends Controller
 {
@@ -131,7 +133,7 @@ class AjaxController extends Controller
             $array_insert[$key]['MaLop'] = $MaLop;
             $array_insert[$key]['MaGiaoVien'] = $MaGV;
         }
-        
+
         DB::table('PHANCONG')
             ->where('MaNamHoc','=',$MaNamHoc)
             ->where('MaGiaoVien','=',$MaGV)
@@ -140,10 +142,10 @@ class AjaxController extends Controller
         $array = Array(
             'msg' => 'successfuly',
             'status' => 'success'
-        ); 
+        );
         if ($request->ajax()) {
             $afftected = DB::table('PHANCONG')->insert($array_insert);
-            echo json_encode($array); 
+            echo json_encode($array);
             exit;
         }
     }
@@ -165,7 +167,7 @@ class AjaxController extends Controller
             ->where('MaNamHoc','=',$MaNamHoc)
             ->where('MaLop','=',$MaLop)
             ->delete();
-            
+
         DB::table('KQ_HOC_KY_MON_HOC')
             ->where('MaHocSinh','=',$MaHocSinh)
             ->where('MaMonHoc','=',$MaMonHoc)
@@ -194,7 +196,7 @@ class AjaxController extends Controller
         $mieng->MaLoai = 'LD0001';
         $mieng->Diem = $array[0];
         $mieng->save();
-        
+
         //15P
         $diem15P = new Diem;
         $diem15P->MaHocSinh = $MaHocSinh;
@@ -235,7 +237,7 @@ class AjaxController extends Controller
     {
         # code...
         $lich = DB::table('EVENTMENT')->select('*')->get();
-       
+
         echo json_encode($lich); exit;
     }
 
@@ -290,7 +292,7 @@ class AjaxController extends Controller
         }else{
             $lich->end = substr($request->end, 0, 10)." ".$request->endTime.":00";
         }
-        
+
         $lich->save();
     }
 
@@ -320,8 +322,8 @@ class AjaxController extends Controller
             ->where('KQ_HOC_KY_MON_HOC.MaNamHoc','=', $request->get('MaNH'))
             ->select('MONHOC.MaMonHoc','KQ_HOC_KY_MON_HOC.DTBKiemTra','KQ_HOC_KY_MON_HOC.DTBMonHocKy')
             ->groupBy('MONHOC.MaMonHoc')
-            ->get();  
-            
+            ->get();
+
         $diem = DB::table('DIEM')
             ->join('MONHOC','MONHOC.MaMonHoc','=','DIEM.MaMonHoc')
             ->select('MONHOC.TenMonHoc','MONHOC.MaMonHoc',
@@ -337,7 +339,7 @@ class AjaxController extends Controller
             ->where('DIEM.MaHocKy','=',$request->get('MaHK'))
             ->get();
 
-        
+
         foreach($diem as $d){
             echo "<tr>
                 <td>".$d->TenMonHoc."</td>
@@ -348,12 +350,12 @@ class AjaxController extends Controller
                 if(count($hocsinhdiem)>0){
                     foreach($hocsinhdiem as $di){
                         if($d->MaMonHoc == $di->MaMonHoc){
-                            echo "<td class='text-center'>".round($di->DTBKiemTra,2)."</td>";    
+                            echo "<td class='text-center'>".round($di->DTBKiemTra,2)."</td>";
                         }
                     }
                     foreach($hocsinhdiem as $di){
                         if($d->MaMonHoc == $di->MaMonHoc){
-                        echo "<td class='text-center'>".round($di->DTBMonHocKy,2)."</td>";    
+                        echo "<td class='text-center'>".round($di->DTBMonHocKy,2)."</td>";
                         }
                     }
                 }else{
@@ -361,7 +363,7 @@ class AjaxController extends Controller
                           <td></td>";
                 }
             echo "</tr>";
-        }         
+        }
     }
 
 
@@ -380,12 +382,12 @@ class AjaxController extends Controller
             ->where('users.id','!=',Auth::user()->id)
             ->select('users.id','users.name')
             ->get();
-          
+
         $data = ['noidung' => $request->noidung];
         Mail::later(5,'Mail.blanks', $data, function($message) use($request){
             $message->to($request->email, $request->name)->subject($request->tieude);
         });
-              
+
     }
 
     public function users()
@@ -441,7 +443,7 @@ class AjaxController extends Controller
                         foreach($lichchung as $lc){
                             if($lc->idThu === $td->id && $lc->idTiet === $t->id && $lc->TrangThai === 'sang'){
                                 echo "<a href='#' data-value='$lc->id' data-toggle='modal' data-target='#myModal' class='sua'>$lc->TenMonHoc - $lc->TenLop (GV: $lc->TenGiaoVien)</a> <i class='fa fa-close text-danger model_img' id='$lc->id'></i><hr>";
-                            } 
+                            }
                         }
                     echo "</td>";
                 }
@@ -465,7 +467,7 @@ class AjaxController extends Controller
                     echo "</td>";
                 }
             echo "</tr>";
-        }   
+        }
     }
 
 
@@ -528,7 +530,6 @@ class AjaxController extends Controller
             $affected = Gvmon::where('id',$request->get('idLich'))->update($data);
             return response()->json($affected);
         }
-        
     }
 
     public function xoalichid(Request $request)
@@ -572,7 +573,7 @@ class AjaxController extends Controller
                         foreach($lichchung as $lc){
                             if($lc->idThu === $td->id && $lc->idTiet === $t->id && $lc->TrangThai === 'sang'){
                                 echo "<a href='#' data-value='$lc->id' data-toggle='modal' data-target='#myModal' class='sua'>$lc->TenMonHoc (GV: $lc->TenGiaoVien)</a> <i class='fa fa-close text-danger model_img' id='$lc->id'></i>";
-                            } 
+                            }
                         }
                     echo "</td>";
                 }
@@ -632,5 +633,53 @@ class AjaxController extends Controller
             echo json_encode($data);
         }
 
+    }
+
+    public function sach_theloai(Request $request)
+    {
+        # code...
+        $sach_theloai = DB::table('SACH')
+            ->where('idTheLoaiSach','=',$request->get('idTLSach'))
+            ->get();
+        echo json_encode($sach_theloai);
+        exit;
+    }
+
+    public function hocsinh_l(Request $request)
+    {
+        # code...
+    	$hocsinh_lop = DB::table('HOCSINH')
+    		->join('PHANLOP','PHANLOP.MaHocSinh','=','HOCSINH.MaHocSinh')
+    		->join('LOP','LOP.MaLop','=','PHANLOP.MaLop')
+    		->where('PHANLOP.MaLop','=',$request->get('idLop'))
+    		->select('HOCSINH.MaHocSinh','HOCSINH.HoTen')
+    		->get();
+        echo json_encode($hocsinh_lop); exit;
+    }
+
+    public function muon_delete(Request $request)
+    {
+        # code...
+        $Muonsach = Muonsach::find($request->get('id'));
+        $array = Array(
+            'msg' => 'successfuly',
+            'status' => 'success'
+        );
+        if ($request->ajax()) {
+            $Muonsach->delete();
+            echo json_encode($array);
+            exit;
+        }
+    }
+
+    public function postChuong(Request $request)
+    {
+      # code...
+      $doctruyen = new Doctruyen;
+      $doctruyen->MaSach = $request->idSach_c;
+      $doctruyen->Chuong = $request->SoChuong;
+      // $doctruyen->GioiThieu = $request->GioiThieu;
+      $doctruyen->Noidung = $request->NoiDung;
+      $doctruyen->save();
     }
 }
