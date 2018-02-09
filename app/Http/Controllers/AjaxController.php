@@ -24,6 +24,7 @@ use App\KQHockyMonhoc;
 use App\Sach;
 use App\Muonsach;
 use App\Doctruyen;
+use App\Tracnghiem;
 
 class AjaxController extends Controller
 {
@@ -678,8 +679,34 @@ class AjaxController extends Controller
       $doctruyen = new Doctruyen;
       $doctruyen->MaSach = $request->idSach_c;
       $doctruyen->Chuong = $request->SoChuong;
-      // $doctruyen->GioiThieu = $request->GioiThieu;
       $doctruyen->Noidung = $request->NoiDung;
       $doctruyen->save();
+    }
+
+    public function cauhoi_tracnghiem(Request $request)
+    {
+      # code...
+      $cauhoi = DB::table('TRACNGHIEM')
+        ->where('MaMonHoc','=',$request->get('MaMonHoc'))
+        ->get();
+      echo json_encode($cauhoi); exit;
+    }
+
+    public function xemDapan(Request $request)
+    {
+      # code...
+      $cautraloi = DB::table('CAUTRALOI')
+        ->join('TRACNGHIEM','TRACNGHIEM.id','=','CAUTRALOI.idCauHoi')
+        ->where('CAUTRALOI.idCauHoi','=',$request->get('idCauhoi'))
+        ->select('TRACNGHIEM.CauHoi','CAUTRALOI.CauTraLoi','CAUTRALOI.DapAn as tl','TRACNGHIEM.DapAn as da','TRACNGHIEM.id')
+        ->get();
+      echo json_encode($cautraloi);
+      exit;
+    }
+
+    public function capnhatTN(Request $request)
+    {
+        # code...
+        
     }
 }

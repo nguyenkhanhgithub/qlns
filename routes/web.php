@@ -255,6 +255,9 @@ Route::group(['prefix' => 'manage','middleware' => 'middleLogin'],function(){
         Route::get('sach_theloai','AjaxController@sach_theloai');
         Route::get('hocsinh_l','AjaxController@hocsinh_l');
         Route::get('muon_delete','AjaxController@muon_delete');
-				Route::post('postChuong','AjaxController@postChuong');
+        Route::post('postChuong','AjaxController@postChuong');
+        Route::get('tracnghiem','AjaxController@cauhoi_tracnghiem');
+        Route::get('xemDapan','AjaxController@xemDapan');
+        Route::post('capnhatTN','AjaxController@capnhatTN');
     });
 });

@@ -312,7 +312,7 @@
 
             <li> <a href="javascript:void(0)" class="waves-effect"><i class="mdi mdi-email fa-fw"></i> <span class="hide-menu">Quản lý thi cử<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">9</span></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="manage/thicu/index" class="waves-effect"><i class="ti-email fa-fw"></i> <span class="hide-menu">Đề thi</a></li>
+                    <li><a href="manage/thicu/index" class="waves-effect"><i class="ti-email fa-fw"></i> <span class="hide-menu">Ngân hàng câu hỏi</a></li>
                 </ul>
                 </ul>
             </li>

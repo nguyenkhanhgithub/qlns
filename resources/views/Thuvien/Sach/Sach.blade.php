@@ -235,19 +235,19 @@
     });
 
 		$(document).ready(function() {
-				$(document).on('click', '.pagination a', function (e) {
-						getPosts($(this).attr('href').split('page=')[1]);
-						e.preventDefault();
-				});
+			$(document).on('click', '.pagination a', function (e) {
+					getPosts($(this).attr('href').split('page=')[1]);
+					e.preventDefault();
+			});
 		});
 
 		function getPosts(page) {
-				$.ajax({
-						url : 'manage/sach/index?page=' + page,
-						dataType: 'json',
-				}).done(function (data) {
-						$('.table-responsive').html(data);
-				});
+			$.ajax({
+					url : 'manage/sach/index?page=' + page,
+					dataType: 'json',
+			}).done(function (data) {
+					$('.table-responsive').html(data);
+			});
 		}
 
 		$(document).on('click','.themchuong',function(){

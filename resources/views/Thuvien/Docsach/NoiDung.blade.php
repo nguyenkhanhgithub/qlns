@@ -35,7 +35,7 @@
 					e.preventDefault();
 			});
 	});
-  /* thay đổi url ko sử load lại trang */
+  /* thay đổi url ko load lại trang */
   function ChangeUrl(page, url) {
       if (typeof (history.pushState) != "undefined") {
           var obj = { Page: page, Url: url };
