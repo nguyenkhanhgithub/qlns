@@ -172,7 +172,6 @@
                 type: 'POST',
                 beforeSend: function (xhr) {
                     var token = $('input[name="_token"]').val();
-
                     if (token) {
                         return xhr.setRequestHeader('X-CSRF-TOKEN', token);
                     }

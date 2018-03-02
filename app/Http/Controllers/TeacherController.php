@@ -25,7 +25,6 @@ class TeacherController extends Controller
             ->join('PHANCONG','PHANCONG.MaGiaoVien','=','GIAOVIEN.MaGiaoVien')
             ->join('MONHOC','MONHOC.MaMonHoc','=','PHANCONG.MaMonHoc')
             ->select('MONHOC.TenMonHoc','GIAOVIEN.MaGiaoVien')
-            ->groupBy('MONHOC.TenMonHoc')
             ->get();
         return view('Giaovien.Giaovien.DanhsachGV',['giaovien' => $giaovien,'giaovien_mon' => $giaovien_mon,'monhoc' => $monhoc, 'btn' => 'Thêm mới']);    
     }

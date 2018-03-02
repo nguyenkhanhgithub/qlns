@@ -58,8 +58,9 @@
                                     <td class="text-nowrap center">
                                         <a href="manage/mon/getUpdate/{{ $mh->MaMonHoc }}" data-toggle="tooltip" data-original-title="Cập nhật"> <i class="fa fa-pencil text-inverse m-r-10"></i></a>
                                         @if($mh->MaMonPhanCong == NULL)
-                                            <a href="manage/mon/getDelete/{{ $mh->MaMonHoc }}" class="model_img" id="sa-warning" data-toggle="tooltip" data-original-title="Xóa"> <i class="fa fa-close text-danger"></i> </a>
+                                            <a href="manage/mon/getDelete/{{ $mh->MaMonHoc }}" class="model_img" id="sa-warning" data-toggle="tooltip" data-original-title="Xóa"> <i class="fa fa-close text-danger m-r-10"></i> </a>
                                         @endif
+                                        <a href="manage/mon/mongv/{{ $mh->MaMonHoc }}" title="Giáo viên dạy"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

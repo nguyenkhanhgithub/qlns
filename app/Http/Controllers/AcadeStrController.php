@@ -36,7 +36,7 @@ class AcadeStrController extends Controller
                 'txtTenHocLuc' => 'required|unique:HOCLUC,TenHocLuc',
                 'txtCanDuoi'   => 'required|min:1|max:10|numeric',
                 'txtCanTren'   => 'required|min:1|max:10|numeric',
-                'txtKhongChe'   => 'required|min:1|max:10|numeric',
+                'txtKhongChe'  => 'required|min:1|max:10|numeric',
             ],
             [
                 'txtTenHocLuc.required' => 'Chưa nhập tên học lực.',
@@ -47,9 +47,9 @@ class AcadeStrController extends Controller
                 'txtCanTren.required'   => 'Chưa nhập điểm cận trên.',
                 'txtCanTren.min'        => 'Điểm cận trên thấp nhất là 1.',
                 'txtCanTren.max'        => 'Điểm cận trên cao nhất là 10.',
-                'txtKhongChe.required'   => 'Chưa nhập điểm khống chế.',
-                'txtKhongChe.min'        => 'Điểm khống chế thấp nhất là 1.',
-                'txtKhongChe.max'        => 'Điểm khống chế cao nhất là 10.',
+                'txtKhongChe.required'  => 'Chưa nhập điểm khống chế.',
+                'txtKhongChe.min'       => 'Điểm khống chế thấp nhất là 1.',
+                'txtKhongChe.max'       => 'Điểm khống chế cao nhất là 10.',
             ]
         );
 

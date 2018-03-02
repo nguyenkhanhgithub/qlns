@@ -12,7 +12,6 @@ class SubjectController extends Controller
 
     public function index()
     {
-
         $Monhoc = DB::table('MONHOC')
             ->leftJoin('GIAOVIEN', 'MONHOC.MaMonHoc', '=', 'GIAOVIEN.MaMonHoc')
             ->leftJoin('PHANCONG', 'MONHOC.MaMonHoc', '=', 'PHANCONG.MaMonHoc')

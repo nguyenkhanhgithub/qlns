@@ -35,6 +35,7 @@
     <!-- Daterange picker plugins css -->
     <link href="public/back-end/plugins/bower_components/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
     <link href="public/back-end/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="public/back-end/plugins/bower_components/contextMenu/jquery.contextMenu.min.css" rel="stylesheet">
 
     <!-- summernotes CSS -->
     <link href="public/back-end/plugins/bower_components/summernote/dist/summernote.css" rel="stylesheet" />
@@ -58,6 +59,9 @@
 <![endif]-->
     @yield('style')
     <style>
+        .clockpicker-popover {
+            z-index: 99999 !important;
+        }
         .myadmin-alert-bottom,
         .myadmin-alert-bottom-left,
         .myadmin-alert-bottom-right,
@@ -188,6 +192,8 @@
     <script src="public/back-end/plugins/bower_components/custom-select/custom-select.min.js" type="text/javascript"></script>
     <script src="public/back-end/plugins/bower_components/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="public/back-end/plugins/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="public/back-end/plugins/bower_components/contextMenu/jquery.contextMenu.min.js"></script>
+    <script src="public/back-end/plugins/bower_components/contextMenu/jquery.ui.position.min.js"></script>
     <script src="public/back-end/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="public/back-end/plugins/bower_components/multiselect/js/jquery.multi-select.js"></script>
     <style media="screen">

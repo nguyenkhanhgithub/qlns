@@ -6,7 +6,7 @@
             <div class="vtabs" style="width: 100%;">
                 <ul class="nav tabs-vertical" style="border-right: 0px;">
                      <li class="tab active" data-value="{{$hocky->MaHocKy}}">
-                        <a data-toggle="tab" href="#{{$hocky->MaHocKy}}"aria-expanded="false"> <span class="visible-xs"><i class="ti-home"></i></span> <span class="hidden-xs">Kết quả học tập {{$hocky->TenHocKy}}</span> </a>
+                        <a data-toggle="tab" href="#{{$hocky->MaHocKy}}" aria-expanded="false"> <span class="visible-xs"><i class="ti-home"></i></span> <span class="hidden-xs">Kết quả học tập {{$hocky->TenHocKy}}</span> </a>
                     </li>
                 </ul>
             </div>

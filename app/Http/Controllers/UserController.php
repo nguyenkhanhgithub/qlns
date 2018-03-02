@@ -11,10 +11,7 @@ class UserController extends Controller
     //
     public function index()
     {
-    	# code...
-      // $user = User::paginate(1);
     	return view('login');
-      // return response()->json($user);
     }
 
     public function postLogin(Request $request)

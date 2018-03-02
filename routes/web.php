@@ -49,6 +49,7 @@ Route::group(['prefix' => 'manage','middleware' => 'middleLogin'],function(){
         Route::post('postUpdate/{id}','SubjectController@postUpdate');
 
         Route::get('getDelete/{id}','SubjectController@getDelete');
+        Route::get('mongv/{id}','TeacherSjController@index');
     });
 
     Route::group(['prefix' => 'diem'],function(){
@@ -219,7 +220,8 @@ Route::group(['prefix' => 'manage','middleware' => 'middleLogin'],function(){
 		});
 
 		Route::group(['prefix' => 'thicu'],function(){
-				Route::get('index','ExamController@index');
+            Route::get('lopthi','ClassEXController@index');
+			Route::get('index','ExamController@index');
 		});
 
     Route::group(['prefix' => 'ajax'],function(){
@@ -259,5 +261,7 @@ Route::group(['prefix' => 'manage','middleware' => 'middleLogin'],function(){
         Route::get('tracnghiem','AjaxController@cauhoi_tracnghiem');
         Route::get('xemDapan','AjaxController@xemDapan');
         Route::post('capnhatTN','AjaxController@capnhatTN');
+        Route::get('deleteCauhoi','AjaxController@deleteCauhoi');
+        Route::post('insertTN','AjaxController@insertTN');
     });
 });

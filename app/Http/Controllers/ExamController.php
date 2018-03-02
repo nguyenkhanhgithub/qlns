@@ -10,10 +10,11 @@ use App\Tracnghiem;
 class ExamController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
       # code...
-      $monhoc = Monhoc::all();
-      return view('Thicu.Dethi.Dethi',['monhoc'=>$monhoc]);
+     	$monhoc = Monhoc::all();
+    	$MaKhoiLop = $request->get('idKhoi');
+      	return view('Thicu.Dethi.Dethi',['monhoc'=>$monhoc, 'idKhoi' => $MaKhoiLop]);
     }
 }

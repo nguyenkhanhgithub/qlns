@@ -25,6 +25,7 @@ use App\Sach;
 use App\Muonsach;
 use App\Doctruyen;
 use App\Tracnghiem;
+use App\Cautraloi;
 
 class AjaxController extends Controller
 {
@@ -293,7 +294,6 @@ class AjaxController extends Controller
         }else{
             $lich->end = substr($request->end, 0, 10)." ".$request->endTime.":00";
         }
-
         $lich->save();
     }
 
@@ -310,7 +310,8 @@ class AjaxController extends Controller
     {
         # code...
         $lich = Lich::find($id);
-        echo json_encode($lich); exit;
+        echo json_encode($lich); 
+        exit;
     }
 
     public function hocsinhmon(Request $request)
@@ -377,19 +378,6 @@ class AjaxController extends Controller
         echo json_encode($user); exit;
     }
 
-    public function sendmailQTV(Request $request)
-    {
-        $user = DB::table('users')
-            ->where('users.id','!=',Auth::user()->id)
-            ->select('users.id','users.name')
-            ->get();
-
-        $data = ['noidung' => $request->noidung];
-        Mail::later(5,'Mail.blanks', $data, function($message) use($request){
-            $message->to($request->email, $request->name)->subject($request->tieude);
-        });
-
-    }
 
     public function users()
     {
@@ -688,6 +676,7 @@ class AjaxController extends Controller
       # code...
       $cauhoi = DB::table('TRACNGHIEM')
         ->where('MaMonHoc','=',$request->get('MaMonHoc'))
+        ->where('MaKhoiLop','=',$request->get('idKhoi'))
         ->get();
       echo json_encode($cauhoi); exit;
     }
@@ -695,18 +684,94 @@ class AjaxController extends Controller
     public function xemDapan(Request $request)
     {
       # code...
-      $cautraloi = DB::table('CAUTRALOI')
-        ->join('TRACNGHIEM','TRACNGHIEM.id','=','CAUTRALOI.idCauHoi')
-        ->where('CAUTRALOI.idCauHoi','=',$request->get('idCauhoi'))
-        ->select('TRACNGHIEM.CauHoi','CAUTRALOI.CauTraLoi','CAUTRALOI.DapAn as tl','TRACNGHIEM.DapAn as da','TRACNGHIEM.id')
-        ->get();
+      $cautraloi = DB::table('TRACNGHIEM')
+        ->leftJoin('CAUTRALOI','CAUTRALOI.idCauHoi','=','TRACNGHIEM.id')
+        ->where('TRACNGHIEM.id','=',$request->get('idCauhoi'))
+        ->select('TRACNGHIEM.CauHoi','CAUTRALOI.CauTraLoiA','CAUTRALOI.CauTraLoiB','CAUTRALOI.CauTraLoiC','CAUTRALOI.CauTraLoiD','CAUTRALOI.DapAn as tl','TRACNGHIEM.DapAn as da','TRACNGHIEM.id')
+        ->get()->first();
       echo json_encode($cautraloi);
       exit;
     }
 
     public function capnhatTN(Request $request)
     {
-        # code...
+       
+
+        Cautraloi::where('idCauHoi','=',$request->idCH)->update(
+            [
+                'CauTraLoiA' => $request->dapanA,
+                'CauTraLoiB' => $request->dapanB,
+                'CauTraLoiC' => $request->dapanC,
+                'CauTraLoiD' => $request->dapanD,
+                'DapAn' => $request->dapan,
+            ]
+        );
+
+
+        $tn = Tracnghiem::find($request->idCH);
+        $tn->CauHoi = $request->Cauhoi;
+        $tn->DapAn = $request->dapan;
+        $tn->save();
+
         
+        $array = Array(
+            'msg' => 'successfuly',
+            'status' => 'success'
+        );
+        if ($request->ajax()) {
+            echo json_encode($array);
+            exit;
+        }
+    }
+
+    public function deleteCauhoi(Request $request)
+    {
+        # code...
+        $id = $request->get('idCH');
+        $array = Array(
+            'msg' => 'successfuly',
+            'status' => 'success'
+        );
+
+        $ctl = Cautraloi::where('idCauHoi','=',$id);
+        $tn = Tracnghiem::find($id);
+        if ($request->ajax()) {
+            if(!empty($ctl)){
+                $ctl->delete();
+            }
+            $tn->delete();
+            echo json_encode($array);
+            exit;
+        }
+    }
+
+    public function insertTN(Request $request)
+    {
+        # code...
+        $id =  DB::table('TRACNGHIEM')->insertGetId(
+            [
+                'CauHoi'=> '',
+                'DapAn' => '',
+                'MaMonHoc' => $request->idMH,
+                'MaKhoiLop' => $request->idKhoi
+            ]
+        );
+        $ctl = new Cautraloi;
+        $ctl->idCauHoi = $id;
+        $ctl->DapAn = null;
+        $ctl->CauTraLoiA = null;
+        $ctl->CauTraLoiB = null;
+        $ctl->CauTraLoiC = null;
+        $ctl->CauTraLoiD = null;
+        $ctl->save();
+        $array = Array(
+            'msg' => 'successfuly',
+            'status' => 'success'
+        );
+        if ($request->ajax()) {
+            $ctl->save();
+            echo json_encode($array);
+            exit;
+        }
     }
 }
